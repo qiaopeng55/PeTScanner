@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hi, Welcome to PeT Scanner!</string>
+    <string name="app_name">PeTScanner</string>
+    <string name="btn_scan">Start Scan</string>
+    <string name="btn_index">View Products</string>
+    <string name="no_products">No Product</string>
+    <string name="menu_delete">Delete Note</string>
+    <string name="menu_insert">Add Note</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit_product">Edit Product</string>
+    <string name="status">Product Status</string>
+    <string name="status_received">received</string>
+    <string name="status_shoot">shoot</string>
+    <string name="status_returned">returned</string>
+        
+</resources>
