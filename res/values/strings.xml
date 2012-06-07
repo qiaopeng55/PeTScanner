@@ -8,8 +8,8 @@
     <string name="no_products">No Product</string>
     <string name="menu_delete">Delete Note</string>
     <string name="menu_insert">Add Note</string>
-    <string name="title">Title</string>
-    <string name="body">Body</string>
+    <string name="title">WebTitle</string>
+    <string name="body">LegacyVPN</string>
     <string name="confirm">Confirm</string>
     <string name="edit_product">Edit Product</string>
     <string name="status">Product Status</string>

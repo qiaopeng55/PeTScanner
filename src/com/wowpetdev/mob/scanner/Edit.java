@@ -68,20 +68,21 @@ public class Edit extends Activity implements RadioGroup.OnCheckedChangeListener
             mBodyText.setText(note.getString(
                     note.getColumnIndexOrThrow(DbAdapter.KEY_BODY)));
             
-            String shoot_status = note.getString(note.getColumnIndexOrThrow(DbAdapter.KEY_STATUS));
-            Log.d(TAG, shoot_status);
-            
-            Log.d(TAG, Boolean.toString("shoot".replaceAll(" ","") == "shoot"));
-            
-            mRadioGroup.check(R.id.radio1);
-            
-//			if (shoot_status == "received") {
-//				mRadioGroup.check(R.id.radio0);
-//			} else if (shoot_status == "shoot") {
-//				mRadioGroup.check(R.id.radio1);
-//			} else if (shoot_status == "returned") {
-//				mRadioGroup.check(R.id.radio2);
-//			}
+            try {
+                String shoot_status = note.getString(note.getColumnIndexOrThrow(DbAdapter.KEY_STATUS));
+                Log.d(TAG, "Status: " + shoot_status);
+                
+                if ( "received".equals(shoot_status) ) {
+                	mRadioGroup.check(R.id.radio0);
+                } else if ( "shoot".equals(shoot_status)) {
+                	mRadioGroup.check(R.id.radio1);
+                } else if ( "returned".equals(shoot_status) ) {
+                	mRadioGroup.check(R.id.radio2);
+                }
+            } catch (Exception e){
+            	Log.d(TAG,e.toString());
+            }
+
         }
     }
 
@@ -104,7 +105,14 @@ public class Edit extends Activity implements RadioGroup.OnCheckedChangeListener
         populateFields();
     }
 
-    private void saveState() {
+    @Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		mDbHelper.close();
+	}
+
+	private void saveState() {
         String title = mTitleText.getText().toString();
         String body = mBodyText.getText().toString();        
 

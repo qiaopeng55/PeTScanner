@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView android:id="@+id/text1" xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text1"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:ellipsize="marquee"
+    android:gravity="center_vertical"
+    android:maxLines="4"
+    android:singleLine="false"
+    android:text="Frontview"
+    android:textColor="#0099CC"
+    android:textStyle="normal" 
+    android:textSize="40dp"
+    />
