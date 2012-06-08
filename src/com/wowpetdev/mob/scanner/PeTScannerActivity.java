@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -11,6 +12,11 @@ import android.widget.Toast;
 public class PeTScannerActivity extends Activity {
 	private String contentsString;
 	private DbAdapter mDbHelper;
+	
+    private static final int ACTIVITY_CREATE=0;
+	private static final int ACTIVITY_EDIT=1;
+	
+	private static final String TAG = "Main";
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -21,14 +27,13 @@ public class PeTScannerActivity extends Activity {
 		Button btnScanBarCode = (Button) findViewById(R.id.btnScanBarCode);
 		Button btnIndex = (Button) findViewById(R.id.btnIndex);
 		
-        mDbHelper = new DbAdapter(this);
-        mDbHelper.open();
+
 		
 		btnScanBarCode.setOnClickListener(new View.OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub				
 				IntentIntegrator integrator = new IntentIntegrator(
 						PeTScannerActivity.this);
 				integrator.initiateScan();
@@ -68,9 +73,30 @@ public class PeTScannerActivity extends Activity {
 				Toast.makeText(this, "Problem to get the  content Number",
 						Toast.LENGTH_LONG).show();
 
+	        	
 			} else {
 				Toast.makeText(this, contentsString, Toast.LENGTH_LONG).show();
-				mDbHelper.createNote(contentsString, contentsString);
+				
+
+	            
+				try {
+			        mDbHelper = new DbAdapter(this);
+			        mDbHelper.open();
+					Cursor note = mDbHelper.fetchAPN(contentsString);
+		            startManagingCursor(note);
+		        	Long id = note.getLong(note.getColumnIndexOrThrow(DbAdapter.KEY_ROWID));				
+		        	//Toast.makeText(this, Long.toString(id), Toast.LENGTH_LONG).show(); 
+				
+					Intent i = new Intent(getApplicationContext(), Edit.class);
+					i.putExtra(DbAdapter.KEY_ROWID, id);
+					startActivity(i);
+				}
+				catch (Exception e) {
+			        mDbHelper = new DbAdapter(this);
+			        mDbHelper.open();
+					Log.d(TAG,e.toString());
+					mDbHelper.createNote(contentsString, contentsString);
+				}
 			}
 
 		} else {

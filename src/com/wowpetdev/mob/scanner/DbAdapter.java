@@ -143,8 +143,23 @@ public class DbAdapter {
 
         Cursor mCursor =
 
+            mDb.query(true, DATABASE_TABLE, 
+            		new String[] {KEY_ROWID, KEY_TITLE, KEY_BODY, KEY_STATUS}, 
+                    KEY_ROWID + " LIKE '" + rowId + "%'", 
+                    null, null, null, null, null);
+        if (mCursor != null) {
+            mCursor.moveToFirst();
+        }
+        return mCursor;
+
+    }
+    
+    public Cursor fetchAPN(String apn) throws SQLException {
+
+        Cursor mCursor =
+
             mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                    KEY_TITLE, KEY_BODY, KEY_STATUS}, KEY_ROWID + "=" + rowId, null,
+                    KEY_TITLE, KEY_BODY, KEY_STATUS}, KEY_BODY + " like " + apn, null,
                     null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();

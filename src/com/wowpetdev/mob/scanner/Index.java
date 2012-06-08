@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +23,8 @@ public class Index extends ListActivity {
 
     private DbAdapter mDbHelper;
 
+    private static final String TAG = "Index";
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -95,6 +98,7 @@ public class Index extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Intent i = new Intent(this, Edit.class);
+        Log.d(TAG,Long.toString(id) );
         i.putExtra(DbAdapter.KEY_ROWID, id);
         startActivityForResult(i, ACTIVITY_EDIT);
     }

@@ -7,7 +7,12 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+        android:maxLines="4"
+        android:singleLine="false"
+        android:text="@string/hello"
+        android:textColor="#0099CC"
+        android:textSize="40dp"
+        android:textStyle="normal" />
 
     <Button
         android:id="@+id/btnScanBarCode"

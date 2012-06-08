@@ -132,6 +132,6 @@ public class Edit extends Activity implements RadioGroup.OnCheckedChangeListener
 		
 		RadioButton Choice = (RadioButton) findViewById(checkedId);
 		mStatus = Choice.getText().toString();
-		Toast.makeText(getApplicationContext(), mStatus, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(getApplicationContext(), mStatus, Toast.LENGTH_SHORT).show();
 	}
 }
